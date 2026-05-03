@@ -7,6 +7,7 @@ class Post_Type {
     public function __construct() {
         add_action( 'init', [ $this, 'register_post_type' ] );
         add_action( 'rest_api_init', [ $this, 'register_rest_fields' ] );
+        add_filter( 'rest_prepare_todo_item', [ $this, 'prepare_rest_response' ], 10, 3 );
     }
 
     public function register_post_type() {
@@ -21,6 +22,8 @@ class Post_Type {
             'rest_base' => 'todo-items',
             'supports' => [ 'title', 'custom-fields' ],
             'has_archive' => false,
+            'show_in_admin_bar' => false,
+            'exclude_from_search' => true,
         ] );
 
         register_post_meta( $this->post_type, 'status', [
@@ -28,18 +31,27 @@ class Post_Type {
             'single' => true,
             'show_in_rest' => true,
             'default' => 'incomplete',
+            'auth_callback' => function() {
+                return current_user_can( 'edit_posts' );
+            },
         ] );
 
         register_post_meta( $this->post_type, 'created_at', [
             'type' => 'string',
             'single' => true,
             'show_in_rest' => true,
+            'auth_callback' => function() {
+                return current_user_can( 'edit_posts' );
+            },
         ] );
 
         register_post_meta( $this->post_type, 'updated_at', [
             'type' => 'string',
             'single' => true,
             'show_in_rest' => true,
+            'auth_callback' => function() {
+                return current_user_can( 'edit_posts' );
+            },
         ] );
     }
 
@@ -57,5 +69,17 @@ class Post_Type {
             'created_at' => get_post_meta( $object['id'], 'created_at', true ),
             'updated_at' => get_post_meta( $object['id'], 'updated_at', true ),
         ];
+    }
+
+    public function prepare_rest_response( $response, $post, $request ) {
+        $meta = get_post_meta( $post->ID );
+        
+        $response->data['meta'] = [
+            'status' => $meta['status'][0] ?? 'incomplete',
+            'created_at' => $meta['created_at'][0] ?? '',
+            'updated_at' => $meta['updated_at'][0] ?? '',
+        ];
+
+        return $response;
     }
 }
