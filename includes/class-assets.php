@@ -48,10 +48,10 @@ class Assets {
             );
         }
 
-        if ( file_exists( TODO_MANAGER_BLOCK_PATH . 'build/admin.css' ) ) {
+        if ( file_exists( TODO_MANAGER_BLOCK_PATH . 'build/style-admin.css' ) ) {
             wp_enqueue_style(
                 'todo-manager-admin-style',
-                TODO_MANAGER_BLOCK_URL . 'build/admin.css',
+                TODO_MANAGER_BLOCK_URL . 'build/style-admin.css',
                 [],
                 TODO_MANAGER_BLOCK_VERSION
             );
@@ -80,10 +80,10 @@ class Assets {
             );
         }
 
-        if ( file_exists( TODO_MANAGER_BLOCK_PATH . 'build/frontend.css' ) ) {
+        if ( file_exists( TODO_MANAGER_BLOCK_PATH . 'build/style-admin.css' ) ) {
             wp_enqueue_style(
                 'todo-manager-frontend-style',
-                TODO_MANAGER_BLOCK_URL . 'build/frontend.css',
+                TODO_MANAGER_BLOCK_URL . 'build/style-admin.css',
                 [],
                 TODO_MANAGER_BLOCK_VERSION
             );
