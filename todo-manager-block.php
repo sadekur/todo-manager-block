@@ -18,7 +18,8 @@ define( 'TODO_MANAGER_BLOCK_VERSION', '1.0.0' );
 define( 'TODO_MANAGER_BLOCK_PATH', plugin_dir_path( __FILE__ ) );
 define( 'TODO_MANAGER_BLOCK_URL', plugin_dir_url( __FILE__ ) );
 
-require_once TODO_MANAGER_BLOCK_PATH . 'includes/class-plugin.php';
+require_once TODO_MANAGER_BLOCK_PATH . 'vendor/autoload.php';
+require_once TODO_MANAGER_BLOCK_PATH . 'src/php/Plugin.php';
 
 function todo_manager_block_init() {
     return \TodoManagerBlock\Plugin::instance();
