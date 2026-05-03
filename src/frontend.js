@@ -2,6 +2,7 @@ import { render } from '@wordpress/element';
 import { useState, useEffect } from '@wordpress/element';
 import { TextControl, Button, Spinner } from '@wordpress/components';
 import apiFetch from '@wordpress/api-fetch';
+import './style.scss';
 
 const TodoManagerFrontend = () => {
     const [todos, setTodos] = useState( [] );

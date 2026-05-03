@@ -2,6 +2,7 @@ import { render } from '@wordpress/element';
 import { useState, useEffect } from '@wordpress/element';
 import { TextControl, Button, Card, CardBody, Spinner, Notice, Modal, Flex, FlexItem } from '@wordpress/components';
 import apiFetch from '@wordpress/api-fetch';
+import './style.scss';
 
 const TodoManagerAdmin = () => {
     const [todos, setTodos] = useState( [] );

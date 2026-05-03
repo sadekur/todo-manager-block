@@ -1,0 +1,15 @@
+{
+  "apiVersion": 3,
+  "name": "todo-manager/todo-manager",
+  "title": "Todo Manager",
+  "category": "widgets",
+  "description": "A synchronized Todo manager block.",
+  "supports": {
+    "html": false
+  },
+  "attributes": {},
+  "editorScript": "file:../../build/blocks/todo-manager/index.js",
+  "editorStyle": "file:../../build/blocks/todo-manager/index.css",
+  "style": "file:../../build/blocks/todo-manager/style-index.css",
+  "render": "file:./render.php"
+}
