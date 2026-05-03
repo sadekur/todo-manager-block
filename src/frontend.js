@@ -1,6 +1,6 @@
 import { render } from '@wordpress/element';
 import { useState, useEffect } from '@wordpress/element';
-import { TextControl, Button, Spinner } from '@wordpress/components';
+import { TextControl, Button, Spinner, CheckboxControl } from '@wordpress/components';
 import apiFetch from '@wordpress/api-fetch';
 import './style.scss';
 
@@ -9,6 +9,7 @@ const TodoManagerFrontend = () => {
     const [newTodo, setNewTodo] = useState( '' );
     const [loading, setLoading] = useState( true );
     const [search, setSearch] = useState( '' );
+    const [showCompleted, setShowCompleted] = useState( true );
 
     const fetchTodos = async () => {
         try {
@@ -87,7 +88,9 @@ const TodoManagerFrontend = () => {
 
     const filteredTodos = todos.filter( ( todo ) => {
         const title = todo.title?.rendered || todo.title || '';
-        return title.toLowerCase().includes( search.toLowerCase() );
+        const matchesSearch = title.toLowerCase().includes( search.toLowerCase() );
+        const matchesFilter = showCompleted || todo.meta?.status !== 'complete';
+        return matchesSearch && matchesFilter;
     } );
 
     return (
@@ -104,12 +107,17 @@ const TodoManagerFrontend = () => {
                     Add Todo
                 </Button>
             </div>
-            <div className="todo-search" style={ { margin: '10px 0' } }>
+            <div className="todo-filters" style={ { margin: '10px 0', display: 'flex', gap: '20px' } }>
                 <TextControl
                     label="Search Todos"
                     value={ search }
                     onChange={ setSearch }
                     placeholder="Search..."
+                />
+                <CheckboxControl
+                    label="Show Completed"
+                    checked={ showCompleted }
+                    onChange={ setShowCompleted }
                 />
             </div>
             { loading ? (
