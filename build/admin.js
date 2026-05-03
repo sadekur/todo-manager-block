@@ -1,1 +1,455 @@
-(()=>{"use strict";var e,t={608(e,t,a){const o=window.wp.element,n=window.wp.components,l=window.wp.apiFetch;var r=a.n(l);const i=window.ReactJSXRuntime,d=()=>{const[e,t]=(0,o.useState)([]),[a,l]=(0,o.useState)(""),[d,s]=(0,o.useState)(!0),[c,h]=(0,o.useState)(null),[m,u]=(0,o.useState)(null),[p,x]=(0,o.useState)(""),[v,w]=(0,o.useState)(""),y=async()=>{try{s(!0);const e=await r()({path:"/wp/v2/todo-items?per_page=100&_fields=id,title,meta,date",method:"GET"});t(e),h(null)}catch(e){h("Failed to load todos")}finally{s(!1)}};(0,o.useEffect)(()=>{y()},[]);const j=async()=>{if(a.trim())try{const e=(new Date).toISOString();await r()({path:"/wp/v2/todo-items",method:"POST",data:{title:a,status:"publish",meta:{status:"incomplete",created_at:e,updated_at:e}}}),l(""),y()}catch(e){h("Failed to add todo")}},f=async()=>{if(p.trim())try{const e=(new Date).toISOString();await r()({path:`/wp/v2/todo-items/${m.id}`,method:"POST",data:{title:p,meta:{updated_at:e}}}),u(null),x(""),y()}catch(e){h("Failed to update todo")}},g=e.filter(e=>(e.title?.rendered||e.title||"").toLowerCase().includes(v.toLowerCase()));return(0,i.jsxs)("div",{className:"todo-manager-admin",children:[c&&(0,i.jsx)(n.Notice,{status:"error",onRemove:()=>h(null),children:c}),(0,i.jsx)(n.Card,{children:(0,i.jsx)(n.CardBody,{children:(0,i.jsxs)(n.Flex,{children:[(0,i.jsx)(n.FlexItem,{children:(0,i.jsx)(n.TextControl,{label:"New Todo",value:a,onChange:l,onKeyDown:e=>"Enter"===e.key&&j()})}),(0,i.jsx)(n.FlexItem,{children:(0,i.jsx)(n.Button,{variant:"primary",onClick:j,disabled:!a.trim(),children:"Add Todo"})})]})})}),(0,i.jsx)("div",{className:"todo-search",style:{margin:"20px 0"},children:(0,i.jsx)(n.TextControl,{label:"Search Todos",value:v,onChange:w,placeholder:"Search..."})}),d?(0,i.jsx)(n.Spinner,{}):(0,i.jsx)("div",{className:"todo-list",children:g.map(e=>(0,i.jsx)(n.Card,{style:{marginBottom:"10px"},children:(0,i.jsx)(n.CardBody,{children:(0,i.jsxs)(n.Flex,{align:"center",children:[(0,i.jsx)(n.FlexItem,{style:{flex:1},children:(0,i.jsx)("span",{style:{textDecoration:"complete"===e.meta?.status?"line-through":"none"},children:e.title?.rendered||e.title})}),(0,i.jsxs)(n.FlexItem,{children:[(0,i.jsx)(n.Button,{variant:"secondary",size:"small",onClick:()=>(async(e,t)=>{try{const a=(new Date).toISOString();await r()({path:`/wp/v2/todo-items/${e}`,method:"POST",data:{meta:{status:"complete"===t?"incomplete":"complete",updated_at:a}}}),y()}catch(e){h("Failed to update todo")}})(e.id,e.meta?.status),children:"complete"===e.meta?.status?"Undo":"Complete"}),(0,i.jsx)(n.Button,{variant:"tertiary",size:"small",onClick:()=>(e=>{u(e),x(e.title?.rendered||e.title)})(e),children:"Edit"}),(0,i.jsx)(n.Button,{variant:"tertiary",size:"small",onClick:()=>(async e=>{try{await r()({path:`/wp/v2/todo-items/${e}`,method:"DELETE"}),y()}catch(e){h("Failed to delete todo")}})(e.id),children:"Delete"})]})]})})},e.id))}),m&&(0,i.jsxs)(n.Modal,{title:"Edit Todo",onRequestClose:()=>u(null),children:[(0,i.jsx)(n.TextControl,{label:"Todo Title",value:p,onChange:x,onKeyDown:e=>"Enter"===e.key&&f()}),(0,i.jsx)(n.Button,{variant:"primary",onClick:f,children:"Save"})]})]})};(0,o.render)((0,i.jsx)(d,{}),document.getElementById("todo-manager-admin-root"))}},a={};function o(e){var n=a[e];if(void 0!==n)return n.exports;var l=a[e]={exports:{}};return t[e](l,l.exports,o),l.exports}o.m=t,e=[],o.O=(t,a,n,l)=>{if(!a){var r=1/0;for(c=0;c<e.length;c++){for(var[a,n,l]=e[c],i=!0,d=0;d<a.length;d++)(!1&l||r>=l)&&Object.keys(o.O).every(e=>o.O[e](a[d]))?a.splice(d--,1):(i=!1,l<r&&(r=l));if(i){e.splice(c--,1);var s=n();void 0!==s&&(t=s)}}return t}l=l||0;for(var c=e.length;c>0&&e[c-1][2]>l;c--)e[c]=e[c-1];e[c]=[a,n,l]},o.n=e=>{var t=e&&e.__esModule?()=>e.default:()=>e;return o.d(t,{a:t}),t},o.d=(e,t)=>{for(var a in t)o.o(t,a)&&!o.o(e,a)&&Object.defineProperty(e,a,{enumerable:!0,get:t[a]})},o.o=(e,t)=>Object.prototype.hasOwnProperty.call(e,t),(()=>{var e={884:0,15:0};o.O.j=t=>0===e[t];var t=(t,a)=>{var n,l,[r,i,d]=a,s=0;if(r.some(t=>0!==e[t])){for(n in i)o.o(i,n)&&(o.m[n]=i[n]);if(d)var c=d(o)}for(t&&t(a);s<r.length;s++)l=r[s],o.o(e,l)&&e[l]&&e[l][0](),e[l]=0;return o.O(c)},a=globalThis.webpackChunktodo_manager_block=globalThis.webpackChunktodo_manager_block||[];a.forEach(t.bind(null,0)),a.push=t.bind(null,a.push.bind(a))})();var n=o.O(void 0,[15],()=>o(608));n=o.O(n)})();
+/******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
+/******/ 	var __webpack_modules__ = ({
+
+/***/ "./src/admin.js"
+/*!**********************!*\
+  !*** ./src/admin.js ***!
+  \**********************/
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/api-fetch */ "@wordpress/api-fetch");
+/* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./style.scss */ "./src/style.scss");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__);
+
+
+
+
+
+
+const TodoManagerAdmin = () => {
+  const [todos, setTodos] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
+  const [newTodo, setNewTodo] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)('');
+  const [loading, setLoading] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(true);
+  const [error, setError] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
+  const [editingTodo, setEditingTodo] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
+  const [editTitle, setEditTitle] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)('');
+  const [search, setSearch] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)('');
+  const fetchTodos = async () => {
+    try {
+      setLoading(true);
+      const data = await _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_2___default()({
+        path: '/wp/v2/todo-items?per_page=100&_fields=id,title,meta,date',
+        method: 'GET'
+      });
+      setTodos(data);
+      setError(null);
+    } catch (err) {
+      setError('Failed to load todos');
+    } finally {
+      setLoading(false);
+    }
+  };
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    fetchTodos();
+  }, []);
+  const addTodo = async () => {
+    if (!newTodo.trim()) return;
+    try {
+      const now = new Date().toISOString();
+      await _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_2___default()({
+        path: '/wp/v2/todo-items',
+        method: 'POST',
+        data: {
+          title: newTodo,
+          status: 'publish',
+          meta: {
+            status: 'incomplete',
+            created_at: now,
+            updated_at: now
+          }
+        }
+      });
+      setNewTodo('');
+      fetchTodos();
+    } catch (err) {
+      setError('Failed to add todo');
+    }
+  };
+  const toggleTodo = async (todoId, currentStatus) => {
+    try {
+      const now = new Date().toISOString();
+      await _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_2___default()({
+        path: `/wp/v2/todo-items/${todoId}`,
+        method: 'POST',
+        data: {
+          meta: {
+            status: currentStatus === 'complete' ? 'incomplete' : 'complete',
+            updated_at: now
+          }
+        }
+      });
+      fetchTodos();
+    } catch (err) {
+      setError('Failed to update todo');
+    }
+  };
+  const deleteTodo = async todoId => {
+    try {
+      await _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_2___default()({
+        path: `/wp/v2/todo-items/${todoId}`,
+        method: 'DELETE'
+      });
+      fetchTodos();
+    } catch (err) {
+      setError('Failed to delete todo');
+    }
+  };
+  const startEdit = todo => {
+    setEditingTodo(todo);
+    setEditTitle(todo.title?.rendered || todo.title);
+  };
+  const saveEdit = async () => {
+    if (!editTitle.trim()) return;
+    try {
+      const now = new Date().toISOString();
+      await _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_2___default()({
+        path: `/wp/v2/todo-items/${editingTodo.id}`,
+        method: 'POST',
+        data: {
+          title: editTitle,
+          meta: {
+            updated_at: now
+          }
+        }
+      });
+      setEditingTodo(null);
+      setEditTitle('');
+      fetchTodos();
+    } catch (err) {
+      setError('Failed to update todo');
+    }
+  };
+  const filteredTodos = todos.filter(todo => {
+    const title = todo.title?.rendered || todo.title || '';
+    return title.toLowerCase().includes(search.toLowerCase());
+  });
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+    className: "todo-manager-admin",
+    children: [error && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Notice, {
+      status: "error",
+      onRemove: () => setError(null),
+      children: error
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Card, {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.CardBody, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Flex, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.FlexItem, {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
+              label: "New Todo",
+              value: newTodo,
+              onChange: setNewTodo,
+              onKeyDown: e => e.key === 'Enter' && addTodo()
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.FlexItem, {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
+              variant: "primary",
+              onClick: addTodo,
+              disabled: !newTodo.trim(),
+              children: "Add Todo"
+            })
+          })]
+        })
+      })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+      className: "todo-search",
+      style: {
+        margin: '20px 0'
+      },
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
+        label: "Search Todos",
+        value: search,
+        onChange: setSearch,
+        placeholder: "Search..."
+      })
+    }), loading ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Spinner, {}) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+      className: "todo-list",
+      children: filteredTodos.map(todo => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Card, {
+        style: {
+          marginBottom: '10px'
+        },
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.CardBody, {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Flex, {
+            align: "center",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.FlexItem, {
+              style: {
+                flex: 1
+              },
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
+                style: {
+                  textDecoration: todo.meta?.status === 'complete' ? 'line-through' : 'none'
+                },
+                children: todo.title?.rendered || todo.title
+              })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.FlexItem, {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
+                variant: "secondary",
+                size: "small",
+                onClick: () => toggleTodo(todo.id, todo.meta?.status),
+                children: todo.meta?.status === 'complete' ? 'Undo' : 'Complete'
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
+                variant: "tertiary",
+                size: "small",
+                onClick: () => startEdit(todo),
+                children: "Edit"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
+                variant: "tertiary",
+                size: "small",
+                onClick: () => deleteTodo(todo.id),
+                children: "Delete"
+              })]
+            })]
+          })
+        })
+      }, todo.id))
+    }), editingTodo && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Modal, {
+      title: "Edit Todo",
+      onRequestClose: () => setEditingTodo(null),
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
+        label: "Todo Title",
+        value: editTitle,
+        onChange: setEditTitle,
+        onKeyDown: e => e.key === 'Enter' && saveEdit()
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
+        variant: "primary",
+        onClick: saveEdit,
+        children: "Save"
+      })]
+    })]
+  });
+};
+(0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.render)(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(TodoManagerAdmin, {}), document.getElementById('todo-manager-admin-root'));
+
+/***/ },
+
+/***/ "./src/style.scss"
+/*!************************!*\
+  !*** ./src/style.scss ***!
+  \************************/
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ },
+
+/***/ "react/jsx-runtime"
+/*!**********************************!*\
+  !*** external "ReactJSXRuntime" ***!
+  \**********************************/
+(module) {
+
+module.exports = window["ReactJSXRuntime"];
+
+/***/ },
+
+/***/ "@wordpress/api-fetch"
+/*!**********************************!*\
+  !*** external ["wp","apiFetch"] ***!
+  \**********************************/
+(module) {
+
+module.exports = window["wp"]["apiFetch"];
+
+/***/ },
+
+/***/ "@wordpress/components"
+/*!************************************!*\
+  !*** external ["wp","components"] ***!
+  \************************************/
+(module) {
+
+module.exports = window["wp"]["components"];
+
+/***/ },
+
+/***/ "@wordpress/element"
+/*!*********************************!*\
+  !*** external ["wp","element"] ***!
+  \*********************************/
+(module) {
+
+module.exports = window["wp"]["element"];
+
+/***/ }
+
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		if (!(moduleId in __webpack_modules__)) {
+/******/ 			delete __webpack_module_cache__[moduleId];
+/******/ 			var e = new Error("Cannot find module '" + moduleId + "'");
+/******/ 			e.code = 'MODULE_NOT_FOUND';
+/******/ 			throw e;
+/******/ 		}
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = __webpack_modules__;
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/chunk loaded */
+/******/ 	(() => {
+/******/ 		var deferred = [];
+/******/ 		__webpack_require__.O = (result, chunkIds, fn, priority) => {
+/******/ 			if(chunkIds) {
+/******/ 				priority = priority || 0;
+/******/ 				for(var i = deferred.length; i > 0 && deferred[i - 1][2] > priority; i--) deferred[i] = deferred[i - 1];
+/******/ 				deferred[i] = [chunkIds, fn, priority];
+/******/ 				return;
+/******/ 			}
+/******/ 			var notFulfilled = Infinity;
+/******/ 			for (var i = 0; i < deferred.length; i++) {
+/******/ 				var [chunkIds, fn, priority] = deferred[i];
+/******/ 				var fulfilled = true;
+/******/ 				for (var j = 0; j < chunkIds.length; j++) {
+/******/ 					if ((priority & 1 === 0 || notFulfilled >= priority) && Object.keys(__webpack_require__.O).every((key) => (__webpack_require__.O[key](chunkIds[j])))) {
+/******/ 						chunkIds.splice(j--, 1);
+/******/ 					} else {
+/******/ 						fulfilled = false;
+/******/ 						if(priority < notFulfilled) notFulfilled = priority;
+/******/ 					}
+/******/ 				}
+/******/ 				if(fulfilled) {
+/******/ 					deferred.splice(i--, 1)
+/******/ 					var r = fn();
+/******/ 					if (r !== undefined) result = r;
+/******/ 				}
+/******/ 			}
+/******/ 			return result;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/jsonp chunk loading */
+/******/ 	(() => {
+/******/ 		// no baseURI
+/******/ 		
+/******/ 		// object to store loaded and loading chunks
+/******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
+/******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
+/******/ 		var installedChunks = {
+/******/ 			"admin": 0,
+/******/ 			"./style-admin": 0
+/******/ 		};
+/******/ 		
+/******/ 		// no chunk on demand loading
+/******/ 		
+/******/ 		// no prefetching
+/******/ 		
+/******/ 		// no preloaded
+/******/ 		
+/******/ 		// no HMR
+/******/ 		
+/******/ 		// no HMR manifest
+/******/ 		
+/******/ 		__webpack_require__.O.j = (chunkId) => (installedChunks[chunkId] === 0);
+/******/ 		
+/******/ 		// install a JSONP callback for chunk loading
+/******/ 		var webpackJsonpCallback = (parentChunkLoadingFunction, data) => {
+/******/ 			var [chunkIds, moreModules, runtime] = data;
+/******/ 			// add "moreModules" to the modules object,
+/******/ 			// then flag all "chunkIds" as loaded and fire callback
+/******/ 			var moduleId, chunkId, i = 0;
+/******/ 			if(chunkIds.some((id) => (installedChunks[id] !== 0))) {
+/******/ 				for(moduleId in moreModules) {
+/******/ 					if(__webpack_require__.o(moreModules, moduleId)) {
+/******/ 						__webpack_require__.m[moduleId] = moreModules[moduleId];
+/******/ 					}
+/******/ 				}
+/******/ 				if(runtime) var result = runtime(__webpack_require__);
+/******/ 			}
+/******/ 			if(parentChunkLoadingFunction) parentChunkLoadingFunction(data);
+/******/ 			for(;i < chunkIds.length; i++) {
+/******/ 				chunkId = chunkIds[i];
+/******/ 				if(__webpack_require__.o(installedChunks, chunkId) && installedChunks[chunkId]) {
+/******/ 					installedChunks[chunkId][0]();
+/******/ 				}
+/******/ 				installedChunks[chunkId] = 0;
+/******/ 			}
+/******/ 			return __webpack_require__.O(result);
+/******/ 		}
+/******/ 		
+/******/ 		var chunkLoadingGlobal = globalThis["webpackChunktodo_manager_block"] = globalThis["webpackChunktodo_manager_block"] || [];
+/******/ 		chunkLoadingGlobal.forEach(webpackJsonpCallback.bind(null, 0));
+/******/ 		chunkLoadingGlobal.push = webpackJsonpCallback.bind(null, chunkLoadingGlobal.push.bind(chunkLoadingGlobal));
+/******/ 	})();
+/******/ 	
+/************************************************************************/
+/******/ 	
+/******/ 	// startup
+/******/ 	// Load entry module and return exports
+/******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["./style-admin"], () => (__webpack_require__("./src/admin.js")))
+/******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
+/******/ 	
+/******/ })()
+;
+//# sourceMappingURL=admin.js.map
