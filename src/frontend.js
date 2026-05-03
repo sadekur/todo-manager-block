@@ -8,6 +8,7 @@ const TodoManagerFrontend = () => {
     const [todos, setTodos] = useState( [] );
     const [newTodo, setNewTodo] = useState( '' );
     const [loading, setLoading] = useState( true );
+    const [search, setSearch] = useState( '' );
 
     const fetchTodos = async () => {
         try {
@@ -84,6 +85,11 @@ const TodoManagerFrontend = () => {
         }
     };
 
+    const filteredTodos = todos.filter( ( todo ) => {
+        const title = todo.title?.rendered || todo.title || '';
+        return title.toLowerCase().includes( search.toLowerCase() );
+    } );
+
     return (
         <div className="todo-manager-frontend">
             <h3>Todo Manager</h3>
@@ -98,11 +104,19 @@ const TodoManagerFrontend = () => {
                     Add Todo
                 </Button>
             </div>
+            <div className="todo-search" style={ { margin: '10px 0' } }>
+                <TextControl
+                    label="Search Todos"
+                    value={ search }
+                    onChange={ setSearch }
+                    placeholder="Search..."
+                />
+            </div>
             { loading ? (
                 <Spinner />
             ) : (
                 <ul className="todo-list">
-                    { todos.map( ( todo ) => (
+                    { filteredTodos.map( ( todo ) => (
                         <li key={ todo.id } className={ `todo-item ${ todo.meta?.status || 'incomplete' }` }>
                             <span
                                 className="todo-title"
