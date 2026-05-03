@@ -13,9 +13,9 @@ class Assets {
     }
 
     private function init_hooks() {
-        add_action( 'enqueue_block_editor_assets', [ $this, 'enqueue_block_assets' ] );
-        add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_admin_assets' ] );
-        add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_frontend_assets' ] );
+        add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_block_assets' ) );
+        add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_assets' ) );
+        add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_frontend_assets' ) );
     }
 
     public function enqueue_block_assets() {
