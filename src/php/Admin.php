@@ -13,7 +13,7 @@ class Admin {
     }
 
     private function init_hooks() {
-        add_action( 'admin_menu', [ $this, 'add_admin_menu' ] );
+        add_action( 'admin_menu', array( $this, 'add_admin_menu' ) );
     }
 
     public function add_admin_menu() {
@@ -22,7 +22,7 @@ class Admin {
             __( 'Todo Manager', 'todo-manager-block' ),
             'manage_options',
             'todo-manager',
-            [ $this, 'render_admin_page' ],
+            array( $this, 'render_admin_page' ),
             'dashicons-yes-alt',
             30
         );
