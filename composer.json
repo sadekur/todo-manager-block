@@ -1,0 +1,11 @@
+{
+    "name": "todo-manager-block/todo-manager",
+    "description": "A synchronized Todo Manager Block for WordPress",
+    "type": "wordpress-plugin",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "TodoManagerBlock\\": "src/php/"
+        }
+    }
+}
